@@ -1,0 +1,53 @@
+.social-container {
+  @media (--nav) {
+    width: var(--content-left);
+    flex-shrink: 0;
+    background-color: var(--color--gray-95);
+  }
+}
+
+.rotate {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  @media (--nav) {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    width: var(--content-left);
+    text-align: right; /* IE11 */
+
+    img {
+      margin: 10px 5px 10px 10px; /* IE11 */
+
+      @supports (display: block) { /* Override IE11 values. */
+        margin: 10px;
+      }
+    }
+  }
+}
+
+.social-label {
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color--gray-25);
+}
+
+.social-container__inner {
+  padding: var(--sp0-5) var(--sp);
+  background-color: var(--color--gray-95);
+
+  @media (--nav) {
+    position: relative;
+    width: var(--content-left);
+    padding: calc(9 * var(--sp)) 0;
+
+    &.js-fixed {
+      position: fixed;
+      top: var(--sp6);
+      left: 0;
+      height: calc(100vh - 6 * var(--sp))
+    }
+  }
+}

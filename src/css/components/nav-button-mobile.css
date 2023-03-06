@@ -1,0 +1,91 @@
+
+/* Mobile */
+.mobile-nav-button {
+  position: relative;
+  z-index: 10; /* appear above mobile nav */
+  align-self: center;
+  display: flex;
+  align-items: center;
+  -webkit-appearance: none;
+  background: transparent;
+  position: relative;
+  width: var(--sp2);
+  height: var(--sp2);
+  margin-left: auto;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+
+  @media (--sm) {
+    display: inline-flex;
+    width: auto;
+    padding-left: var(--sp);
+  }
+}
+
+/* Text that says "menu" */
+.mobile-nav-button__label {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+  word-wrap: normal;
+
+  @media (--sm) {
+    position: static;
+    clip: auto;
+    overflow: visible;
+    height: auto;
+    width: auto;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 12px;
+  }
+}
+
+.mobile-nav-button__icon {
+  position: relative;
+  width: var(--sp2);
+  height: 3px;
+  background-color: var(--color--blue-50);
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: var(--color--blue-50);
+    transition: all 0.2s;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: auto;
+    left: 0;
+    bottom: -8px;
+    height: 3px;
+    width: 100%;
+    background-color: var(--color--blue-50);
+    transition: all 0.2s;
+  }
+
+  .mobile-nav-button[aria-expanded="true"] & {
+    background-color: transparent;
+
+    &:before {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+
+    &:after {
+      top: 0;
+      transform: rotate(45deg);
+    }
+  }
+}

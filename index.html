@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Olivero Proof of Concept</title>
+  <link rel="preload" href="/fonts/metropolis/Metropolis-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/metropolis/Metropolis-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/lora/lora-v14-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/lora/lora-v14-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/lora/lora-v14-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="dist/style.css">
+  <script defer src="dist/polyfills.js"></script>
+  <script defer src="dist/scripts.js"></script>
+  <script defer src="dist/navigation.js"></script>
+  <script defer src="dist/second-level-navigation.js"></script>
+  <script defer src="dist/search.js"></script>
+</head>
+<body>
+<!-- <img class="mock" src="/mock.jpg" alt=""> -->
+
+  <div class="page-wrapper">
+    <a href="#main-content" class="skip-link visually-hidden focusable">Skip to main content</a>
+  <!-- Header (at wide widths) has height specified so content will not jump -->
+    <header class="site-header">
+
+      <!-- Gets fixed by JS at wide widths -->
+      <div class="site-header__fixable fixable">
+        <div class="header__left">
+          <button class="nav-primary__button" aria-controls="site-header__inner" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="nav-primary__icon">
+              <div></div>
+              <div></div>
+              <div></div>
+            </span>
+          </button>
+        </div>
+
+        <!-- Needs to extend full width so box shadow will also extend -->
+        <div id="site-header__inner" class="site-header__inner">
+          <div class="container">
+            <div class="grid-full">
+              <div class="site-branding">
+                <div class="site-branding__inner">
+                  <a href="">olivero</a>
+                </div>
+              </div>
+              <div class="mobile-buttons">
+                <button class="mobile-nav-button" aria-label="Toggle Main Menu">
+                  <div class="mobile-nav-button__label">Menu</div>
+                  <div class="mobile-nav-button__icon"></div>
+                </button>
+              </div>
+              <div id="header-nav" class="header-nav">
+                <div class="search-narrow__wrapper">
+                  <form role="search" action="">
+                    <label class="visually-hidden" for="search-narrow-input">Search</label>
+                    <input id="search-narrow-input" type="search" placeholder="Search by keyword or phrase.">
+                    <button type="submit">
+                      <span class="icon--search"></span>
+                      <span class="visually-hidden">Search</span>
+                    </button>
+                  </form>
+                </div>
+                <nav class="primary-nav" aria-labelledby="main-menu-description">
+                  <span id="main-menu-description" class="visually-hidden">Main Menu</span>
+                  <ul class="primary-nav--level-1">
+                    <li><a href="#"><span>Home</span></a></li>
+                    <li class="has-children">
+                      <a href="#"><span>Products</span></a>
+                      <button class="primary-nav__button-toggle" aria-controls="product-submenu" aria-expanded="false">
+                        <span class="visually-hidden">Toggle sub-navigation</span>
+                        <span class="icon--menu-toggle"></span>
+                      </button>
+                      <ul id="product-submenu" class="primary-nav--level-2">
+                        <li><a href="#"><span>Black & White Photos</span></a></li>
+                        <li><a href="#"><span>Stone Statues</span></a></li>
+                        <li><a href="#"><span>Antiques & Artifacts</span></a></li>
+                        <li><a href="#"><span>Replicas</span></a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#"><span>About</span></a></li>
+                    <li><a href="#"><span>Blog</span></a></li>
+                    <li><a href="#"><span>Contact</span></a></li>
+                  </ul>
+                </nav>
+                <div class="secondary-nav__wrapper">
+                  <button class="header-nav__search-button" aria-label="Toggle Search Form">
+                    <svg width="24px" height="25px" viewBox="0 0 24 25" version="1.1"
+                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <title>Search Icon</title>
+                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g >
+                          <rect fill="#FFFFFF" x="0" y="0" width="24" height="25">
+                          </rect>
+                          <g  transform="translate(1.000000, 1.000000)" fill="#0D1214">
+                            <path
+                              d="M18,10 C18,14.4183 14.4183,18 10,18 C5.58172,18 2,14.4183 2,10 C2,5.58172 5.58172,2 10,2 C14.4183,2 18,5.58172 18,10 Z M15.7608,18.175 C14.1323,19.3246 12.145,20 10,20 C4.47715,20 0,15.5228 0,10 C0,4.47715 4.47715,0 10,0 C15.5228,0 20,4.47715 20,10 C20,12.6561 18.9645,15.0703 17.2752,16.8609 L21.7071,21.2929 C22.0976,21.6834 22.0976,22.3166 21.7071,22.7071 C21.3166,23.0976 20.6834,23.0976 20.2929,22.7071 L15.7608,18.175 Z"></path>
+                          </g>
+                        </g>
+                      </g>
+                    </svg>
+                    <div class="header-nav__search-button__close"></div>
+                  </button>
+                  <div class="search-wide__wrapper">
+                    <div class="search-wide__container">
+                      <div class="search-wide__grid">
+                        <form role="search" action="">
+                          <label class="visually-hidden" for="search-wide-input">Search</label>
+                          <input id="search-wide-input" type="search"
+                            placeholder="Search by keyword or phrase.">
+                          <button type="submit">
+                              <span class="icon--search"></span>
+                              <span class="visually-hidden">Search</span>
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <nav class="secondary-nav" aria-labelledby="secondary-menu-description">
+                    <span id="secondary-menu-description" class="visually-hidden">Secondary Menu</span>
+                    <ul>
+                      <li><a class="button--primary" href="#">Login</a></li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <main class="container">
+        <a class="visually-hidden" id="main-content" tabindex="-1"></a>
+        <div class="grid-full">
+          <div class="breadcrumb">
+            <ul>
+              <li><a href="#">Drupal</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="hero">
+          <div class="grid-full">
+            <div class="hero__content">
+              <h1>Drupal 9: The Most Beautiful CMS Ever!</h1>
+              <div class="hero__byline">
+                By <a href="#">Matthew Tift</a>, <span class="byline__date">16 October, 2019</span>
+              </div>
+            </div>
+          </div>
+          <div class="grid-full">
+            <div class="hero__img">
+              <img src="/images/hero.jpg" alt="Desktop with two computers showing Olivero design">
+            </div>
+          </div>
+        </div>
+        <div class="grid-full">
+          <div class="text-content">
+            <p class="lead">Welcome to the proof-of-concept HTML for the new Drupal Olivero theme! The
+              intention of this webpage is to validate the user interactions, design,
+              architecture, accessibility, and technology that will be used to create the
+              theme. </p>
+            <h2 id="aboutthisproofofconcept">About this proof-of-concept</h2>
+            <p>This proof of concept was created in static HTML. The repository is <a href="https://github.com/Lullabot/olivero-poc">hosted on
+              GitHub</a>, and the webpage is hosted on Netlify. </p>
+            <p>We created this proof-of-concept to validate the look and feel of the
+              scrolling interactions, and moved on to work to make the nav-bar accessible.
+              This includes ensuring that the menu items are exposed to the accessibility
+              tree, and activating the nav-bar when it gains focus (this is done through the
+              focusin event listener). </p>
+            <h2 id="commitmenttoaccessibility">Commitment to accessibility</h2>
+            <p>To add this theme to Drupal core, we must meet Drupal’s stringent
+              accessibility standards which stipulate compliance with <a
+                href="http://www.w3.org/WAI/intro/wcag">Web Content Accessibility Guidelines
+                (WCAG) 2.0 AA</a>.</p>
+            <p>Throughout the design process, we have been designing with accessibility in
+              mind. We have been continuously testing the design against contrast
+              requirements, and adjusting the design based on this.</p>
+              <figure class="pull-right">
+                <img src="/images/pull-1.jpg" alt="DrupalCon Vienna Group Photo">
+                <figcaption>DrupalCon Vienna group photo. Photo by Dominik Kiss on behalf of
+                  the Drupal Assocation. Creative Commons.</figcaption>
+              </figure>
+            <p>Expanding / collapsing HTML elements within the theme will be either properly
+              removed / added from the accessibility tree, or will become visible when they
+              gain focus. Elements will be styled against the appropriate ARIA attributes to
+              ensure that it becomes immediately apparent when the toggling of attributes is
+              not working correctly.</p>
+            <h2 id="browsersupport">Browser support</h2>
+            <p>Because this theme is intended to go into Drupal core, we need to <a
+                href="https://www.drupal.org/node/3079238">support all browsers that core
+                does</a>. </p>
+            <p>Currently this browser is tested and working on the following:</p>
+            <ul>
+              <li>Chrome</li>
+              <li>Firefox</li>
+              <li>Safari</li>
+              <li>Mobile Safari</li>
+              <li>Internet Explorer 11 (some bugs present!)</li>
+            </ul>
+            <p>We have not yet tested this on the following:</p>
+            <ul>
+              <li>Edge</li>
+              <li>UC browser</li>
+              <li>Opera</li>
+              <li>Opera Mini</li>
+              <li>Samsung</li>
+            </ul>
+            <h2 id="progressiveenhancement">Progressive enhancement</h2>
+            <p>We make use of several modern front-end web development technologies
+              including <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid">CSS
+                Grid</a>, and <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">Intersection
+                Observer</a>.</p>
+            <p>Internet Explorer does have CSS Grid support, but the syntax is old and
+              invalid. Fortunately, the Autoprefixer plugin will automatically add this
+              support. We can do this because <a
+                href="https://www.drupal.org/project/drupal/issues/3060153">Drupal core can
+                now use PostCSS</a> (huge thanks to the Claro team for getting this in)!</p>
+            <p>Internet Explorer also does not support the new Intersection Observer API. To
+              work around this, we check to ensure that the API exists before invoking it.
+              This ensures that the menus are fully accessible, and do not generate console
+              errors — but the fancy scroll interactions will not be available to IE11
+              users.</p>
+
+            <h2 id="table">You get a table, and You get a table</h2>
+            <p>If you need to show off some columnar stuff with rows, Drupal 9’s core theme is ready to help. Your data will be beautifully represented for all your readers.</p>
+
+            <div class="content-bleed">
+              <table summary="This is the table summary 01">
+                <caption>Table Header Caption 01</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Column Header 1</th>
+                    <th scope="col">Column Header 2</th>
+                    <th scope="col">Column Header 3</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Shiver me timbers holystone</td>
+                    <td>No prey, no pay hulk weigh</td>
+                    <td>Spike grog blossom</td>
+                  </tr>
+                  <tr>
+                    <td>Killick lad code of conduct swing the lead fire. Shiver me timbers holystone.</td>
+                    <td>Shiver me timbers holystone</td>
+                    <td>No prey, no pay hulk weigh</td>
+                  </tr>
+                  <tr>
+                    <td>Killick lad code of conduct swing the lead fire.</td>
+                    <td>Shiver me timbers holystone</td>
+                    <td>No prey, no pay hulk weigh</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2 id="table">You want more tables? We have more for you!</h2>
+            <p>If you need to show off some columnar stuff with rows, Drupal 9’s core theme is ready to help. Your data will be beautifully represented for all your readers.</p>
+
+            <div class="content-bleed">
+              <table summary="This is the table summary 02">
+                <caption>Table Header Caption 02</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Column Header 1</th>
+                    <th scope="col">Column Header 2</th>
+                    <th scope="col">Column Header 3</th>
+                    <th scope="col">Column Header 4</th>
+                    <th scope="col">Column Header 5</th>
+                    <th scope="col">Column Header 6</th>
+                    <th scope="col">Column Header 7</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Delectus, doloremque deserunt saepe incidunt, molestias excepturi neque distinctio quos deleniti cum maxime doloribus in dolor exercitationem autem voluptatem quo vero aliquid quia.</td>
+                    <td>Dicta dolores nisi tenetur eos non. Hic recusandae repellendus provident sequi vel <a href="https://drupal.org">necessitatibus</a>, quidem autem unde consectetur quas illo possimus cupiditate veniam commodi. Quo ut amet, nisi reprehenderit asperiores vel!</td>
+                    <td>Incidunt sint eos perferendis rerum officiis reiciendis veritatis deleniti nisi et reprehenderit. Expedita, exercitationem! Animi temporibus laudantium sed dolorem.</td>
+                    <td>Delectus, doloremque deserunt saepe incidunt, molestias excepturi neque distinctio quos deleniti cum maxime doloribus in dolor exercitationem autem voluptatem quo vero aliquid quia.</td>
+                    <td>Dicta dolores nisi tenetur eos non. Hic recusandae repellendus provident sequi vel necessitatibus, quidem autem unde consectetur quas illo possimus cupiditate veniam commodi. Quo ut amet, nisi reprehenderit asperiores vel!</td>
+                    <td>Incidunt sint eos perferendis rerum <a href="https://drupal.org">officiis reiciendis</a> veritatis deleniti nisi et reprehenderit. Expedita, exercitationem! Animi temporibus laudantium sed dolorem.</td>
+                    <td>Killick lad code of conduct swing the lead fire.</td>
+                  </tr>
+                  <tr>
+                    <td>Delectus, doloremque deserunt saepe incidunt, molestias excepturi neque distinctio quos deleniti cum maxime doloribus in dolor <a href="https://drupal.org">exercitationem autem voluptatem quo</a> vero aliquid quia.</td>
+                    <td>Dicta dolores nisi tenetur eos non. Hic recusandae repellendus provident sequi vel necessitatibus, quidem autem unde consectetur quas illo possimus cupiditate veniam commodi. Quo ut amet, nisi reprehenderit asperiores vel!</td>
+                    <td>Incidunt sint eos perferendis <a href="https://drupal.org">rerum officiis</a> reiciendis veritatis deleniti nisi et reprehenderit. Expedita, exercitationem! Animi temporibus laudantium sed dolorem.</td>
+                    <td>Killick lad code of conduct swing the lead fire.</td>
+                    <td>Delectus, doloremque deserunt saepe incidunt, molestias excepturi neque distinctio quos deleniti cum maxime doloribus in dolor exercitationem autem voluptatem quo vero aliquid quia.</td>
+                    <td>Dicta dolores nisi tenetur eos non. Hic recusandae repellendus provident sequi vel necessitatibus, quidem autem unde consectetur quas illo possimus cupiditate veniam commodi. Quo ut amet, nisi reprehenderit asperiores vel!</td>
+                    <td>Incidunt sint eos perferendis rerum officiis reiciendis veritatis deleniti nisi et reprehenderit. Expedita, exercitationem! Animi temporibus laudantium sed dolorem.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2>Subheadings are the best!</h2>
+            <p>Delectus, doloremque deserunt saepe incidunt, molestias excepturi neque distinctio quos deleniti cum maxime doloribus in dolor exercitationem autem voluptatem quo vero aliquid quia. Enim quidem earum consectetur at, sed placeat?</p>
+            <p>Nostrum magni ipsa illo quae! Dolores laborum vel sapiente doloremque perspiciatis ab provident voluptas obcaecati ullam, fuga exercitationem laboriosam ad dolor animi totam nesciunt explicabo est natus iure. Aliquid, qui?</p>
+
+            <p>Incidunt sint eos perferendis rerum officiis reiciendis veritatis deleniti nisi et reprehenderit. Expedita, exercitationem! Animi temporibus laudantium sed dolorem. Itaque dignissimos animi natus. Praesentium dolor culpa corporis, qui blanditiis impedit!</p>
+            <p>Dicta dolores nisi tenetur eos non. Hic recusandae repellendus provident sequi vel necessitatibus, quidem autem unde consectetur quas illo possimus cupiditate veniam commodi. Quo ut amet, nisi reprehenderit asperiores vel!</p>
+            <p>Deleniti dignissimos tempore vero doloribus laboriosam itaque sint nam, eveniet veritatis non, illo fuga ipsam quaerat dolore. Quidem consectetur expedita iste aliquam laboriosam maxime laborum sunt. Ullam veritatis accusamus quidem?</p>
+            <blockquote>Oh, and if you thought people pay attention to subheadings, just
+              wait till you
+              try leveraging some sweet pull quotes!</blockquote>
+            <p>Cum veritatis autem deserunt at ad dicta pariatur eum. Sed magni distinctio temporibus similique sapiente molestias accusamus quidem odit, consequuntur sint laborum esse suscipit! Itaque quasi distinctio eligendi nisi. Eligendi.</p>
+            <p>Nobis voluptates dolorum explicabo nihil culpa veniam. Accusantium, fugiat possimus? Quaerat, totam? Nobis in sed minus odio, corrupti nihil quisquam veniam pariatur veritatis illum, explicabo sunt vel rerum soluta dolore.</p>
+            <p>Doloribus adipisci repellat eius soluta numquam iusto aut corrupti earum impedit error maiores quis vel, rem dignissimos dolorum sapiente nostrum optio ducimus eveniet vitae, eligendi exercitationem. Cumque ullam optio ipsum!</p>
+            <p>Sint provident, accusamus iure ut inventore numquam id fugit placeat ad ratione quae repellat obcaecati animi voluptatibus necessitatibus maxime fuga commodi dicta aperiam, sunt culpa veniam corporis alias sed. Praesentium.</p>
+            <p>Eaque dolorum ratione commodi in ipsum dolore nihil odio iste itaque. Recusandae dolorem ipsum, libero facere dolorum autem quam esse labore laboriosam atque facilis. Similique aspernatur beatae iste aut vitae.</p>
+            <figure class="pull-left">
+              <img src="/images/pull-1.jpg" alt="DrupalCon Vienna Group Photo">
+              <figcaption>DrupalCon Vienna group photo. Photo by Dominik Kiss on behalf of
+                the Drupal Assocation. Creative Commons.</figcaption>
+            </figure>
+            <p>Ducimus adipisci placeat excepturi, doloremque praesentium aspernatur laudantium nostrum minima deserunt, ab blanditiis provident? Mollitia minima sapiente eaque voluptatibus rerum dolores aut natus, labore assumenda esse cupiditate eveniet quam nulla.</p>
+            <p>Neque inventore illum illo voluptatum ipsum iste beatae nulla nemo consequatur? Accusantium aperiam fugit repellendus, blanditiis vitae earum nam eligendi ipsa labore culpa quisquam ratione, iure voluptate eius sunt veniam?</p>
+            <p>Voluptates maiores reiciendis, incidunt aut quaerat labore voluptas iure illo delectus ullam, quis assumenda dolor laudantium necessitatibus ut. Neque eum sit deleniti impedit natus dolorem quaerat, eaque veniam libero quod?</p>
+            <p>Fuga numquam laudantium sunt dolorum obcaecati cumque porro quo maiores ab. Adipisci atque modi nobis quaerat quisquam laboriosam doloremque illo consequatur impedit veniam! Accusantium, porro quod quasi vitae amet facere.</p>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque placeat esse libero perspiciatis, rerum quia deleniti cupiditate fuga ipsam molestiae. Quos qui officiis modi quae laborum saepe harum commodi sit?</p>
+            <p>Ipsa, perferendis, commodi repellendus libero, deleniti corrupti expedita eveniet iure fugit ducimus doloribus ipsam amet unde dolores porro ut. Dolorem enim id nulla maiores vel, hic animi ipsum! Molestias, maiores!</p>
+            <p>Perspiciatis ea molestiae minima hic veritatis ad in dignissimos harum. Odio praesentium nihil, officiis ad nulla cum iusto, et temporibus illum at sint ipsam dolorum quam autem quidem harum quis.</p>
+            <p>Consequatur fuga consectetur eveniet recusandae sequi possimus maiores. Possimus eveniet nemo excepturi fugit quam reprehenderit pariatur consequuntur, ipsum ipsam quis, dolor aut, necessitatibus praesentium blanditiis veniam ex exercitationem. Commodi, fuga?</p>
+            <p>Corrupti nobis ratione distinctio dignissimos itaque pariatur aspernatur saepe modi deleniti, voluptatem illo animi quisquam architecto? A animi tempore qui facere, nemo esse voluptate ipsum ipsa, nam quia voluptatem fugit.</p>
+            <p>Dignissimos ex porro omnis officia eius nobis rerum harum architecto ducimus quam quo sit nihil, soluta amet dolorum reiciendis nemo praesentium voluptatem placeat perspiciatis voluptatum. Nihil illo vitae sint nam!</p>
+            <p>Delectus animi maiores repellendus illo rem, eum exercitationem est ipsum dignissimos fuga, et voluptate rerum ratione eos eveniet repudiandae. Harum quos, maxime quasi consectetur eveniet sapiente officia aut corrupti commodi.</p>
+            <p>Est dolorum tenetur ratione illo incidunt culpa nesciunt earum, deleniti accusamus veritatis ut asperiores blanditiis accusantium nulla impedit, labore laborum voluptate ipsam facere dolorem quis eligendi? Veniam atque voluptate qui.</p>
+            <p>Cupiditate in, at iure veniam nemo explicabo blanditiis omnis a temporibus, dicta rem culpa? Consequatur tempora dolorem perferendis aliquid fugiat, reprehenderit, veniam assumenda quasi magnam quo labore repudiandae nobis explicabo!</p>
+            <p>Culpa iste excepturi iure, unde quibusdam, modi animi nesciunt natus repellat, cum beatae maiores earum dolor placeat tempore impedit obcaecati fugit perspiciatis dolorum. Non rerum error tempora necessitatibus dolore voluptate.</p>
+          </div>
+        </div>
+      </main>
+      <aside class="social-container">
+        <div class="social-container__inner fixable">
+          <div class="rotate">
+            <span class="social-label">RSS Feed</span>
+            <a href="#"><img src="images/rss.svg" alt="RSS"></a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div class="container">
+          <div class="grid-full">
+            <div class="powered-by">
+              Powered by <a href="#">Drupal</a> <img src="/images/footer-drupal.svg" alt="Drupal logo">
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div class="overlay"></div>
+  </div>
+</body>
+</html>

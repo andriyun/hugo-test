@@ -1,0 +1,228 @@
+.search-wide__wrapper {
+  display: none;
+  position: absolute;
+  visibility: hidden;
+  width: 100vw;
+  height: var(--sp8);
+  max-width: var(--max-bg-color);
+  max-height: 0;
+  margin: 0;
+  overflow: hidden;
+  left: 0;
+  top: 100%;
+  background: black;
+  border-left: solid var(--content-left) var(--color--gray-10);
+  padding: 0;
+  z-index: 1; /* Ensure left border shows above social region in IE11. */
+  transition: all 0.2s;
+
+  &.is-active {
+    visibility: visible;
+    max-height: var(--sp8);
+  }
+
+  @media (--nav) {
+    body:not(.is-always-mobile-nav) & {
+      display: block;
+    }
+  }
+
+  form {
+    display: flex;
+    grid-column: 1 / 14;
+  }
+
+  input[type="search"] {
+    flex-grow: 1;
+    height: var(--sp8);
+    padding: 0 0 0 var(--sp12);
+    -webkit-appearance: none;
+    border: solid 1px transparent;
+    background-color: transparent;
+    background-image: linear-gradient(var(--color--blue-50), var(--color--blue-50)); /* Two values are needed for IE11 support. */
+    background-size: 0% 10px;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    transition: background-size 0.4s;
+    width: calc(100% + var(--sp2));
+    font-family: serif;
+    color: white;
+    font-size: 32px;
+
+    &::-ms-clear {
+      width: 40px;
+      opacity: 0.5;
+    }
+
+    &:focus {
+      outline: 0;
+      background-size: 100% var(--sp0-5);
+
+      /*
+        We normally indicate focus by animating background-image width. This isn't
+        available in IE11 when in Windows high contrast mode.
+      */
+      @media screen and (-ms-high-contrast: active) {
+        border-bottom-width: var(--sp0-5);
+      }
+    }
+  }
+
+  button {
+    position: relative;
+    width: 100px;
+    overflow: hidden;
+    padding: 0;
+    background-color: transparent;
+    border-color: transparent;
+    cursor: pointer;
+
+    /*
+      When in Windows high contrast mode, FF will will not output either background
+      images or SVGs that are nested directly within a <button> element, so we add a <span>.
+    */
+    .icon--search {
+      position: absolute;
+      right: 0;
+      top: 0;
+      display: block;
+      height: 100%;
+      width: 24px; /* Width of the SVG background image. */
+      background-image: url('/images/search--white.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: auto;
+      pointer-events: none;
+
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 0;
+        transform: scalex(0);
+        transform-origin: left;
+        border-top: solid var(--sp0-5) var(--color--blue-50);
+        transition: transform 0.2s;
+      }
+    }
+
+
+    @media screen and (-ms-high-contrast: active) {
+      /* IE11's high contrast show will not show the background image, so we show the text. */
+      .visually-hidden {
+        position: static;
+        clip: auto;
+        overflow: visible;
+        height: auto;
+        width: auto;
+        text-align: center;
+      }
+
+      /* Edge's high contrast does show the background image, so we hide it. */
+      .icon--search {
+        display: none;
+      }
+    }
+
+    &:focus {
+      outline: 0;
+
+      @media screen and (-ms-high-contrast: active) {
+        border-bottom-width: var(--sp0-5);
+
+        span:after {
+          content: none;
+        }
+      }
+
+      span:after {
+        transform: scalex(1);
+      }
+    }
+  }
+}
+
+.search-wide__container {
+  max-width: var(--max-width);
+  padding-right: var(--sp2);
+}
+
+.search-wide__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-col-count--md), 1fr);
+  grid-column-gap: var(--grid-gap--md);
+}
+
+.header-nav__search-button {
+  position: relative;
+  display: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: transparent;
+  margin-left: var(--sp);
+  margin-right: var(--sp0-5);
+  height: var(--sp6);
+  width: var(--sp3);
+  cursor: pointer;
+
+  @media (--nav) {
+    body:not(.is-always-mobile-nav) & {
+      display: block;
+    }
+  }
+
+  &:focus {
+    outline: 0;
+
+    &:after {
+      transform: scalex(0.5);
+    }
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    transform: scalex(0);
+    border-top: solid var(--sp0-5) var(--color--blue-50);
+    transition: transform 0.2s;
+  }
+
+  &[aria-expanded="true"] {
+    background: black;
+
+    .header-nav__search-button__close {
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: var(--sp1-5);
+        height: 0;
+        border-top: solid 2px white;
+      }
+
+      &:before {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+
+      &:after {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+    }
+
+    svg {
+      display: none;
+    }
+  }
+
+  svg {
+    margin: 0 auto;
+  }
+}

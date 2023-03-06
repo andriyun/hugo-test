@@ -1,0 +1,29 @@
+{{ define "main" }}
+<a class="visually-hidden" id="main-content" tabindex="-1"></a>
+<div class="grid-full">
+  <!--div class="breadcrumb">
+    <ul>
+      <li><a href="#">Drupal</a></li>
+    </ul>
+  </div-->
+</div>
+<div class="hero">
+  <div class="grid-full">
+    <div class="hero__content">
+      <h1>{{ .Title }}</h1>
+      {{ partial "metadata.html" . }}
+    </div>
+  </div>
+  <!-- div class="grid-full">
+    <div class="hero__img">
+        <img
+        src="/images/hero.jpg"
+        alt="Desktop with two computers showing Olivero design"
+        />
+    </div>
+  </div-->
+</div>
+<div class="grid-full">
+  <div class="text-content">{{ .Content }}</div>
+</div>
+{{ end }}

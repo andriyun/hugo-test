@@ -1,0 +1,9 @@
+.hero__byline {
+  color: var(--color--gray-20);
+  font-size: 14px;
+  line-height: var(--sp);
+
+  a {
+    font-weight: bold;
+  }
+}

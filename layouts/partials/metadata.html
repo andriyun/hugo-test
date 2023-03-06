@@ -1,0 +1,12 @@
+{{ $dateTime := .PublishDate.Format "2006-01-02" }} 
+{{ $dateFormat := .Site.Params.dateFormat | default "Jan 2, 2006" }}
+
+<div class="hero__byline">
+  By <a href="#">Matthew Tift</a>,
+  <span class="byline__date">{{ .PublishDate.Format $dateFormat }}</span>
+</div>
+{{ with .Params.tags }}
+<i data-feather="tag"></i>
+{{ range . }} {{ $href := print (absURL "tags/") (urlize .) }}
+<a class="btn btn-sm btn-outline-dark tag-btn" href="{{ $href }}">{{ . }}</a>
+{{ end }} {{ end }}

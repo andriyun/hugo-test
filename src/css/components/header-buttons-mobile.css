@@ -1,0 +1,20 @@
+.mobile-buttons {
+  grid-column: 4 / 7;
+  -ms-grid-column-align: end;
+  margin-left: auto;
+  display: flex;
+
+  @media (--sm) {
+    align-self: end;
+  }
+
+  @media (--grid-md) {
+    grid-column: 11 / 15;
+  }
+
+  @media (--nav) {
+    body:not(.is-always-mobile-nav) & {
+      display: none;
+    }
+  }
+}

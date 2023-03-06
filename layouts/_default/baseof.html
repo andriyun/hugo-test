@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  {{- partial "head.html" . -}}
+  <body>
+    <!-- <img class="mock" src="/mock.jpg" alt=""> -->
+
+    <div class="page-wrapper">
+      <a href="#main-content" class="skip-link visually-hidden focusable"
+        >Skip to main content</a
+      >
+      <!-- Header (at wide widths) has height specified so content will not jump -->
+
+      {{- partial "header.html" . -}}
+      <div class="content">
+        <main class="container">{{- block "main" . }}{{- end }}</main>
+        <aside class="social-container">
+          <div class="social-container__inner fixable">
+            <div class="rotate">
+              <span class="social-label">RSS Feed</span>
+              <a href="#"><img src="images/rss.svg" alt="RSS" /></a>
+            </div>
+          </div>
+        </aside>
+      </div>
+      {{- partial "footer.html" . -}}
+    </div>
+  </body>
+</html>

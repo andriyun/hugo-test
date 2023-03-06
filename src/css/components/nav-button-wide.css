@@ -1,0 +1,98 @@
+/* Desktop */
+
+.nav-primary__button {
+  display: none;
+
+  @media (--nav) {
+    visibility: hidden;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: var(--content-left);
+    height: calc(6 * var(--sp));
+    border: 0;
+    cursor: pointer;
+    background-color: var(--color--blue-50);
+    outline: 0;
+
+    &:focus {
+      border: solid 1px transparent; /* Will show in IE/Edge high contrast mode. */
+    }
+
+    body:not(.is-always-mobile-nav) .js-fixed & {
+      visibility: visible;
+    }
+
+    body.is-always-mobile-nav & {
+      visibility: hidden;
+    }
+  }
+}
+
+.nav-primary__icon {
+  position: relative;
+  width: var(--sp2);
+  height: 21px;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  opacity: 0;
+  transition: all 0.2s;
+
+  .js-fixed & {
+    opacity: 1;
+  }
+
+  [aria-expanded="true"] & {
+    > div:nth-child(1) {
+      top: 9px;
+      transform: rotate(-45deg);
+    }
+
+    > div:nth-child(2) {
+      opacity: 0;
+    }
+
+    > div:nth-child(3) {
+      top: 9px;
+      transform: rotate(45deg);
+    }
+  }
+
+  > div {
+    height: 0;
+    border-top: solid 3px white;
+
+    &:nth-child(1)  {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 0;
+      width: 100%;
+      background-color: white;
+      transition: all 0.2s;
+    }
+
+    &:nth-child(2) {
+      position: absolute;
+      top: 9px;
+      left: 0;
+      height: 0;
+      width: 100%;
+      background-color: white;
+      transition: opacity 0.2s;
+    }
+
+    &:nth-child(3) {
+      position: absolute;
+      top: auto;
+      left: 0;
+      bottom: 0;
+      height: 0;
+      width: 100%;
+      background-color: white;
+      transition: all 0.2s;
+    }
+  }
+}

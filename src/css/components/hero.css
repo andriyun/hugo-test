@@ -1,0 +1,33 @@
+.hero__content {
+  grid-column: 1 / 7;
+
+  @media (--grid-md) { /* 700px */
+    grid-column: 3 / 13;
+  }
+
+  @media (--lg) {
+    grid-column: 3 / 11;
+  }
+}
+
+.hero__img {
+  grid-column: 1 / 7;
+  margin: var(--sp2) 0;
+
+  @media (--sm) {
+    margin: var(--sp3) 0;
+  }
+
+  @media (--grid-md) {
+    grid-column: 1 / 15;
+    margin: var(--sp4) 0;
+  }
+
+  @media (--lg) {
+    grid-column: 2 / 14;
+  }
+
+  img {
+    width: 100%;
+  }
+}
